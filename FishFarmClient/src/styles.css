@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+.card-top>h2{
+    text-align: center; padding:20px 10px 40px 10px;
+}
+.myfont-bold{
+    font-size: 20px;
+    font-weight: 400;
+    color:#368bba !important;
+}
+.my-split{
+    margin:40px 0 20px 0;border-top: 1px dashed #368bba;
+}

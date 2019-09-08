@@ -1,0 +1,13 @@
+h3 {
+  color: darkblue;
+}
+.fa-fx-image{
+  height: 90px;
+  width: 180px;
+}
+.fx-pointer{
+  cursor: pointer;
+}
+.fx-border{
+  border: 1px solid
+}

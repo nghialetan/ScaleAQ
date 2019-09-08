@@ -1,0 +1,83 @@
+<div class="album py-5 bg-light">
+<div class="container">
+  <div class="row">
+  <div class="col-md-4 col-lg-4" >
+    <div class="card mb-4 shadow">
+      <div class="card-top" style="background-color:#95d3e7"> <h2 >Tanks</h2></div>
+      <div class="card-body">
+          <ul class="nav flex-column" *ngFor="let tank of allTanks">
+              <li class="nav-item" >
+                <a class="nav-link active myfont-bold" [ngClass]="{'fx-pointer': true,'fx-border':tank.selected}" (click)="loadFishesOfTank(tank)">Tank  {{tank.tid}} <span style="color:darkred" *ngIf="isTankFulled(tank.tid)">(full)</span></a>
+              </li>
+            </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-lg-4" >
+  <div style="background-color: lightgray;">
+    <div class="card mb-4 shadow">
+      <div class="card-top" style="background-color:#95d3e7"> 
+        <h2 >Fishes</h2>
+      </div>
+      <div class="card-body" style="background-color:#eeeeef;">
+          <input type="search"  (keydown)="onKeydown($event)" [(ngModel)]="searchText" class="form-control fx-nav-search" placeholder="Search fish by id" aria-label="search" aria-describedby="search">
+      </div>
+      <div class="card-body">
+        <div *ngFor="let fish of displayFishes">
+          <div class="fx-pointer"  (click)="fishDetails(fish)">
+              <img   class="fa-fx-image img-rounded"  src="assets/fish.png">
+              <span class="myfont-bold"> Fish  {{fish.fid}}</span>
+          </div>
+          <div class="my-split"></div>
+        </div>
+      </div>
+      </div>    
+  </div>
+  </div>
+
+  <div class="col-md-4 col-lg-4" >
+  <div style="background-color: lightgray;">
+      <div [ngStyle]="{'display': showDetailColumn}">
+        <div class="card mb-4 shadow">
+          <div class="card-top" style="background-color:#95d3e7"> 
+            <h2 >Details</h2>
+          </div>
+          <div class="card-body">
+              <h4>Fish detail</h4>
+              <span class="">Fish Id: {{selectedFish.fid}}</span>
+              <br>
+              <span class="">Tank Id: {{selectedFish.tid}}</span>
+              <div class="my-split"></div>
+
+              <h4>Move to another tank</h4>
+              <div [innerHTML]="availableLocation | safeHtml"></div>   
+              <button style="margin-top:10px;" class="btn btn-success btn-sm" (click)="moveFish()">Move fish</button>
+              <div class="my-split"></div>
+
+              <h4>Movement History</h4>
+              <button  class="btn btn-success btn-sm" (click)="myHistory(selectedFish.fid)">View history</button>
+              <br/><br/>
+              <table class="table" *ngIf="myHistorylist.length > 0">
+                <tr>
+                  <th>From Tank</th>
+                  <th>To Tank</th>
+                  <th>Date</th>
+                </tr>
+                <tr *ngFor="let item of myHistorylist">
+                  <td>{{item.fromTank}}</td>
+                  <td>{{item.toTank}}</td>
+                  <td>{{item.date | date :  "dd.MM.y"}}</td>
+                </tr>
+              </table>
+          </div>
+        </div>
+      </div>    
+    
+  </div>
+  </div>
+
+</div>
+
+  </div>
+  </div>
